@@ -4,7 +4,7 @@
 
 If objects support access to a key, parent key and child objects of same type, and you provide an unsorted list of those objects, then **Hierarchical Data** can build a hierarchy by assigning objects to their parent.
 
-## Prerequisits
+## Prerequisites
 
 * Java 8 or above
 * no other libraries required
@@ -88,13 +88,13 @@ The source category list does not need to provide the categories in a specific o
 However, some things should be considered:
 
 ### Which elements become root elements?
-Each element that has not be assigned to a parent element automatically becomes a root element. There might be more that one root element, e.g. if you provide data like this (pseudo data):
+Each element that has not been assigned to a parent element automatically becomes a root element. There might be more than one root element, e.g. if you provide data like this (pseudo data):
 ```json
 [
-  {id:1, parentId:1},
-  {id:2, parentId:1},
-  {id:5, parentId:5},
-  {id:7, parentId:7}
+  {"id" : 1, "parentId" : 1},
+  {"id" : 2, "parentId" : 1},
+  {"id" : 5, "parentId" : 5},
+  {"id" : 7, "parentId" : 7}
 ]
 ```
 In this case, the elements 1, 5 and 7 will become root elements because they cannot be assigned to a parent elements (only 2 will be assigned to 1).
@@ -121,9 +121,9 @@ There are currently some limitations:
 Consider a list of categories like this:
 ```json
 [
-  {id:1, parentId:3},
-  {id:2, parentId:1},
-  {id:3, parentId:2}
+  {"id" : 1, "parentId" : 3},
+  {"id" : 2, "parentId" : 1},
+  {"id" : 3, "parentId" : 2}
 ]
 ```
 

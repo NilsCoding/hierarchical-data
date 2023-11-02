@@ -1,27 +1,37 @@
 package com.nilscoding.datastruct.hierarchical;
 
-import java.util.Arrays;
-import java.util.Deque;
-import java.util.Iterator;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.NoSuchElementException;
+import java.util.*;
 
 /**
- * Iterator over a hierarchical object
+ * Iterator over a hierarchical object.
+ * @param <T> type of elements
  * @author NilsCoding
- * @param <T>   type of elements
  */
 public class HierarchyIterator<T> implements Iterator<T> {
 
+    /**
+     * Object stack.
+     */
     protected Deque<Deque<T>> objStack = new LinkedList<>();
-    protected IHierarchyDataAccessor<?,T> dataAccessor;
-    
-    public HierarchyIterator(T rootObj, IHierarchyDataAccessor<?,T> dataAccessor) {
+    /**
+     * Data accessor.
+     */
+    protected IHierarchyDataAccessor<?, T> dataAccessor;
+
+    /**
+     * Creates a new Iterator instance.
+     * @param rootObj      root object
+     * @param dataAccessor data accessor
+     */
+    public HierarchyIterator(T rootObj, IHierarchyDataAccessor<?, T> dataAccessor) {
         this.dataAccessor = dataAccessor;
         this.objStack.add(new LinkedList<>(Arrays.asList(rootObj)));
     }
-    
+
+    /**
+     * Checks if the Iterator has a next element or not.
+     * @return true if next elements exists, false if not
+     */
     @Override
     public boolean hasNext() {
         Deque<T> lastStackElem = this.objStack.peekLast();
@@ -31,6 +41,10 @@ public class HierarchyIterator<T> implements Iterator<T> {
         return false;
     }
 
+    /**
+     * Returns the next element, if available.
+     * @return next element
+     */
     @Override
     public T next() {
         if (this.hasNext() == false) {
@@ -54,8 +68,8 @@ public class HierarchyIterator<T> implements Iterator<T> {
         if ((tmpLastStack == null) || (tmpLastStack.isEmpty() == true)) {
             this.objStack.pollLast();
         }
-        
+
         return resultElem;
     }
-    
+
 }

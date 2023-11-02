@@ -3,16 +3,20 @@ package com.nilscoding.datastruct.hierarchical;
 import java.util.List;
 
 /**
- * Implementation-based accessor, where the element itself is a hierarchical data object
+ * Implementation-based accessor, where the element itself is a hierarchical data object.
+ * @param <K> key type
+ * @param <T> element type
  * @author NilsCoding
- * @param <K>   key type
- * @param <T>   element type
  */
-public final class ImplBasedHierarchicalDataAccessor<K, T extends IHierarchicalData<K,T>> implements IHierarchyDataAccessor<K, T> {
+public final class ImplBasedHierarchicalDataAccessor<K, T extends IHierarchicalData<K, T>>
+        implements IHierarchyDataAccessor<K, T> {
 
+    /**
+     * Creates a new instance.
+     */
     public ImplBasedHierarchicalDataAccessor() {
     }
-    
+
     @Override
     public K accessKey(T obj) {
         return obj.getId();
@@ -32,5 +36,5 @@ public final class ImplBasedHierarchicalDataAccessor<K, T extends IHierarchicalD
     public void accessWriteChildElements(T obj, List<T> childList) {
         obj.setChildElements(childList);
     }
-    
+
 }
